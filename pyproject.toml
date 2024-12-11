@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "astraldb"
+version = "0.1.0"
+description = "Yet another database"
+authors = ["StealthyPanda <shaikm259@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+astral = "cli.cli:main"
+
+[tool.poetry.package]
+include = [
+    { include = "astraldb", from = "src" }
+]
