@@ -1,7 +1,7 @@
 
 import os
 import sys, json
-from .splash import splash
+from .splash import splash, splash2
 from astraldb import start_server
 from astraldb.utils import logger, default_port, astral_dir
 
@@ -21,7 +21,7 @@ def parse_argv_flags() -> dict[str, str]:
 
 
 def main():
-    print(splash)
+    print(splash2)
     flags = parse_argv_flags()
     
     port = default_port
