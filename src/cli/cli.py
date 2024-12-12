@@ -32,6 +32,8 @@ def main():
         f'Starting 🚀✨AstralDB server @ http://localhost:{port} in {location}'
     )
     
+    os.makedirs(os.path.join(astral_dir, 'stores'), exist_ok=True)
+    
     start_server({
         'port' : port,
         'debug' : 'debug' in flags
