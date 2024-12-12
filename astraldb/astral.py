@@ -4,7 +4,7 @@ import numpy as np
 import os, json, time
 import asyncio
 
-from utils import *
+from .utils import *
 
 
 class Store:

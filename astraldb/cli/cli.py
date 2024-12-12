@@ -3,7 +3,7 @@ import os
 import sys, json
 from .splash import splash
 from astraldb import start_server
-from utils import logger, default_port, astral_dir
+from astraldb.utils import logger, default_port, astral_dir
 
 
 

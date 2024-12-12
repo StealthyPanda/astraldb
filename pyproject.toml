@@ -18,7 +18,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-astral = "cli.cli:main"
+astral = "astraldb.cli.cli:main"
 
 # [tool.poetry.package]
 # include = [

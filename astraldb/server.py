@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 
-from utils import astral_dir, default_port, logger
+from .utils import astral_dir, default_port, logger
 from .astral import Store
 
 
