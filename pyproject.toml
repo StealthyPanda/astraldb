@@ -1,12 +1,16 @@
 [tool.poetry]
 name = "astraldb"
-version = "0.1.0"
+version = "0.1.1"
 description = "Yet another database"
 authors = ["StealthyPanda <shaikm259@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+loguru = "^0.7.3"
+fastapi = "^0.115.6"
+uvicorn = "^0.32.1"
+pydantic = "^2.10.3"
 
 
 [build-system]
@@ -16,7 +20,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 astral = "cli.cli:main"
 
-[tool.poetry.package]
-include = [
-    { include = "astraldb", from = "src" }
-]
+# [tool.poetry.package]
+# include = [
+#     { include = "astraldb", from = "src" }
+# ]
