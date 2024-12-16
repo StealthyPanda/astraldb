@@ -5,6 +5,8 @@ import os, json, time
 import asyncio
 
 from .utils import *
+from functools import reduce
+
 
 
 class Store:
@@ -111,7 +113,6 @@ class Shard:
         if (curr - self.last_write) < (1 / self.max_rate):
             self.another_write_in_progress = True
             await asyncio.sleep(int((1 / self.max_rate) - (curr - self.last_write)))
-            self.another_write_in_progress = False
         
         logger.info(f'Shard[ {self.store.name}/{self.name} ]: Saving to disk...')
         with open(self.disk_location, 'wb') as file:
@@ -124,10 +125,15 @@ class Shard:
         
         self.last_write += (1 / self.max_rate)
         self.save_task = None
+        self.another_write_in_progress = False
     
     def _save_to_disk(self):
         if self.save_task is None:
-            self.save_task = asyncio.create_task(self._save_to_disk_internal())
+            if self.store._client_mode:
+                self.save_task = self._save_to_disk_internal()
+                self.store.write_tasks.append(self.save_task)
+            else:
+                self.save_task = asyncio.create_task(self._save_to_disk_internal())
         
     
     
@@ -171,6 +177,15 @@ class Store:
             self._add_shard()
         
         self.mapping : dict[str, Shard] = dict()
+        
+        self.write_tasks = []
+        self._client_mode : bool = False
+        
+    
+    @property
+    def keys(self):
+        ks = [each.keys for each in self.shards]
+        return ks[0].union(*ks[1:])
         
     
     def _add_shard(self):

@@ -8,7 +8,7 @@ astral_dir = '.astral'
 
 
 max_shard_size = 2 ** 20 # bytes
-max_update_rate = 1/5 # Hz
+max_update_rate = 1/2 # Hz
 
 logger.remove()
 # logger.add(sys.stdout, level="INFO")
